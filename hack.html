@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Hack</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+        body {
+            background-color: black;
+            color: red;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            padding-top: 100px;
+            overflow: hidden;
+        }
+        #countdown {
+            font-size: 50px;
+            font-weight: bold;
+        }
+        .hidden {
+            display: none;
+        }
+        .glitch {
+            font-size: 30px;
+            animation: glitch 0.3s infinite alternate;
+        }
+        @keyframes glitch {
+            0% { text-shadow: 4px 4px 8px rgba(255, 0, 0, 0.75), -4px -4px 8px rgba(0, 255, 0, 0.75); }
+            100% { text-shadow: -4px -4px 8px rgba(255, 0, 0, 0.75), 4px 4px 8px rgba(0, 255, 0, 0.75); }
+        }
+        #hackButton {
+            font-size: 20px;
+            padding: 15px 30px;
+            margin-top: 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #fileTheft {
+            font-size: 20px;
+            margin-top: 20px;
+            color: lime;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="glitch">⚠ Warning: Your System Has Been Hacked! ⚠</h1>
+    <p class="glitch">Call your son NOW to stop the hack!</p>
+    <p class="glitch">Shutting down in <span id="countdown">30</span> seconds...</p>
+    
+    <button id="hackButton">Stop Hack</button>
+    <p id="fileTheft">🔓 Accessing files... <span id="progress">0%</span></p>
+    
+    <p id="prankMessage" class="hidden glitch">😂 Just kidding, love you mom! ❤️</p>
+    
+    <script>
+        let timeLeft = 30;
+        const countdownElement = document.getElementById('countdown');
+        const prankMessage = document.getElementById('prankMessage');
+        const hackButton = document.getElementById('hackButton');
+        const fileTheft = document.getElementById('fileTheft');
+        const progressElement = document.getElementById('progress');
+
+        const timer = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                document.body.innerHTML = '<h1 class="glitch">💀 System Overridden! 💀</h1>';
+                setTimeout(() => {
+                    document.body.innerHTML = '<h1 class="glitch">😂 Just kidding, love you mom! ❤️</h1>';
+                }, 3000);
+                return;
+            }
+            countdownElement.textContent = --timeLeft;
+        }, 1000);
+
+        hackButton.addEventListener('click', () => {
+            clearInterval(timer);
+            hackButton.style.display = 'none';
+            fileTheft.style.display = 'block';
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 5;
+                progressElement.textContent = progress + '%';
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    fileTheft.innerHTML = '💀 Your system has been fully compromised! 💀';
+                    setTimeout(() => {
+                        document.body.innerHTML = '<h1 class="glitch">😂 Just kidding, love you mom! ❤️</h1>';
+                    }, 3000);
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>
